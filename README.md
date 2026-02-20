@@ -7,6 +7,30 @@
 
 This repository ("`Code - OSS`") is where we (Microsoft) develop the [Visual Studio Code](https://code.visualstudio.com) product together with the community. Not only do we work on code and issues here, we also publish our [roadmap](https://github.com/microsoft/vscode/wiki/Roadmap), [monthly iteration plans](https://github.com/microsoft/vscode/wiki/Iteration-Plans), and our [endgame plans](https://github.com/microsoft/vscode/wiki/Running-the-Endgame). This source code is available to everyone under the standard [MIT license](https://github.com/microsoft/vscode/blob/main/LICENSE.txt).
 
+## Для русскоязычных: прототип Alice Cursor IDE в этом репозитории
+
+В этой ветке добавлен отдельный MVP-проект: [`alice-cursor-ide`](./alice-cursor-ide).
+
+Это прототип IDE в стиле Cursor с:
+
+- чатом по текущему файлу;
+- RAG-поиском по коду проекта;
+- применением предложенных моделью изменений кнопкой `Apply Suggested Change`;
+- интеграцией через официальный API **YandexGPT** (как технический аналог для сценария "на базе Алисы").
+
+Быстрый запуск:
+
+```bash
+cd alice-cursor-ide
+cp .env.example .env
+# укажите YANDEX_FOLDER_ID и YANDEX_API_KEY
+docker compose up --build
+```
+
+После запуска откройте `http://localhost:8080`.
+
+Подробная инструкция: [`alice-cursor-ide/README.md`](./alice-cursor-ide/README.md)
+
 ## Visual Studio Code
 
 <p align="center">
