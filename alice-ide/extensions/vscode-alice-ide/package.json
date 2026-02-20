@@ -1,0 +1,38 @@
+{
+  "name": "alice-ide",
+  "displayName": "Alice IDE",
+  "description": "AI-помощник на базе YandexGPT (Алиса) — чат с контекстом кода",
+  "version": "0.1.0",
+  "publisher": "alice-ide",
+  "engines": { "vscode": "^1.70.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onCommand:aliceIde.openChat"],
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -p . -w"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.70.0",
+    "typescript": "^5.0.0"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "aliceIde.openChat",
+        "title": "Alice: Открыть чат",
+        "icon": "$(comment-discussion)"
+      }
+    ],
+    "configuration": {
+      "title": "Alice IDE",
+      "properties": {
+        "aliceIde.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "URL бэкенда Alice IDE"
+        }
+      }
+    }
+  }
+}
