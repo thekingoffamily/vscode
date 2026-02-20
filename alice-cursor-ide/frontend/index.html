@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Alice Cursor IDE MVP</title>
+	<link rel="stylesheet" href="./styles.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+</head>
+<body>
+	<div class="app">
+		<header class="topbar">
+			<div class="title-wrap">
+				<h1>Alice Cursor IDE (YandexGPT)</h1>
+				<span id="statusText" class="status">Initializing...</span>
+			</div>
+			<div class="actions">
+				<button id="reindexBtn" title="Пересобрать RAG индекс">Reindex</button>
+				<button id="saveBtn">Save File</button>
+				<button id="applyBtn" disabled>Apply Suggested Change</button>
+			</div>
+		</header>
+		<div class="layout">
+			<aside class="panel files-panel">
+				<div class="panel-title">Files</div>
+				<input id="fileFilter" type="text" placeholder="Filter files..." />
+				<ul id="filesList"></ul>
+			</aside>
+			<main class="panel editor-panel">
+				<div class="panel-title" id="activePath">No file selected</div>
+				<div id="editor"></div>
+			</main>
+			<aside class="panel chat-panel">
+				<div class="panel-title">AI Chat</div>
+				<div id="chatMessages" class="chat-messages"></div>
+				<div class="chat-input-wrap">
+					<textarea id="chatInput" rows="5" placeholder="Спроси модель про текущий файл..."></textarea>
+					<button id="sendBtn">Send</button>
+				</div>
+			</aside>
+		</div>
+	</div>
+	<script src="./app.js" type="module"></script>
+</body>
+</html>

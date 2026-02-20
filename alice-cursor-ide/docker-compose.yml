@@ -1,0 +1,14 @@
+services:
+  alice-cursor-ide:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: alice-cursor-ide
+    ports:
+      - "8080:8000"
+    env_file:
+      - .env
+    environment:
+      ALICE_IDE_WORKSPACE: /workspace
+    volumes:
+      - ../:/workspace
