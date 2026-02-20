@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  alice-backend:
+    build:
+      context: ./alice-backend
+      dockerfile: Dockerfile
+    container_name: alice-ide-backend
+    ports:
+      - "8090:8090"
+    environment:
+      - ALICE_YANDEX_CLOUD_API_KEY=${ALICE_YANDEX_CLOUD_API_KEY:-}
+      - ALICE_YANDEX_CLOUD_FOLDER_ID=${ALICE_YANDEX_CLOUD_FOLDER_ID:-}
+      - ALICE_WORKSPACE_ROOT=/workspace
+      - ALICE_HOST=0.0.0.0
+      - ALICE_PORT=8090
+    volumes:
+      - ./:/workspace:rw
+      - alice-vector-store:/app/vector_store
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  alice-vector-store:

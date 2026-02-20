@@ -25,3 +25,9 @@ product.overrides.json
 .vscode-test
 vscode-telemetry-docs/
 test-output.json
+
+# Alice IDE Backend
+alice-backend/.env
+alice-backend/vector_store/
+alice-backend/__pycache__/
+alice-backend/*.pyc

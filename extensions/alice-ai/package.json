@@ -1,0 +1,150 @@
+{
+	"name": "alice-ai",
+	"displayName": "Alice AI — YandexGPT Assistant",
+	"description": "AI-powered coding assistant using YandexGPT, similar to Cursor AI",
+	"version": "1.0.0",
+	"publisher": "alice-ide",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.96.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Machine Learning",
+		"Other"
+	],
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "alice-ai",
+					"title": "Alice AI",
+					"icon": "media/alice-icon.svg"
+				}
+			]
+		},
+		"views": {
+			"alice-ai": [
+				{
+					"type": "webview",
+					"id": "alice-ai.chatView",
+					"name": "Alice Chat"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "alice-ai.askAlice",
+				"title": "Ask Alice AI",
+				"category": "Alice AI"
+			},
+			{
+				"command": "alice-ai.explainCode",
+				"title": "Explain Selected Code",
+				"category": "Alice AI"
+			},
+			{
+				"command": "alice-ai.fixCode",
+				"title": "Fix Selected Code",
+				"category": "Alice AI"
+			},
+			{
+				"command": "alice-ai.refactorCode",
+				"title": "Refactor Selected Code",
+				"category": "Alice AI"
+			},
+			{
+				"command": "alice-ai.generateTests",
+				"title": "Generate Tests",
+				"category": "Alice AI"
+			},
+			{
+				"command": "alice-ai.indexWorkspace",
+				"title": "Index Workspace for RAG",
+				"category": "Alice AI"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"submenu": "alice-ai.submenu",
+					"group": "alice"
+				}
+			],
+			"alice-ai.submenu": [
+				{
+					"command": "alice-ai.explainCode",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "alice-ai.fixCode",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "alice-ai.refactorCode",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "alice-ai.generateTests",
+					"when": "editorHasSelection"
+				}
+			]
+		},
+		"submenus": [
+			{
+				"id": "alice-ai.submenu",
+				"label": "Alice AI"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "alice-ai.askAlice",
+				"key": "ctrl+shift+a",
+				"mac": "cmd+shift+a"
+			}
+		],
+		"configuration": {
+			"title": "Alice AI",
+			"properties": {
+				"alice-ai.apiEndpoint": {
+					"type": "string",
+					"default": "http://localhost:8090",
+					"description": "Alice AI backend API endpoint URL"
+				},
+				"alice-ai.yandexCloudApiKey": {
+					"type": "string",
+					"default": "",
+					"description": "YandexGPT API Key (or set via ALICE_YANDEX_CLOUD_API_KEY env var)"
+				},
+				"alice-ai.yandexCloudFolderId": {
+					"type": "string",
+					"default": "",
+					"description": "Yandex Cloud Folder ID (or set via ALICE_YANDEX_CLOUD_FOLDER_ID env var)"
+				},
+				"alice-ai.enableInlineCompletion": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable AI-powered inline code completion"
+				},
+				"alice-ai.autoIndex": {
+					"type": "boolean",
+					"default": false,
+					"description": "Automatically index workspace on startup"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"compile": "tsc -p ./tsconfig.json",
+		"watch": "tsc -watch -p ./tsconfig.json"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/vscode": "^1.96.0",
+		"typescript": "^5.7.2"
+	}
+}
